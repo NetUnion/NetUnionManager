@@ -14,7 +14,7 @@
     <artifactId>manager</artifactId>
     <version>1.0</version>
 <!--打包设置-->
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

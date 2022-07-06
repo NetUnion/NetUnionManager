@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author David Wang
  * @date 2022-07-06
- * @version 1.0
+ * @version 1.1
  */
 @Mapper
 public interface MemberMapper {
@@ -19,8 +19,9 @@ public interface MemberMapper {
     //删
     public void delete(int id);
     //改
-    public int update(Member member);
+    public void update(Member member);
     public void updatePhoneNumById(int id, String phoneNum);
+    public void updateBankNumById(int id, String bankNum);
     //查
     public List<Member> getAll();
     public Member getById(int id);

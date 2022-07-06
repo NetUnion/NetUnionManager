@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.netunion.manager.mapper.MemberMapper">
-<!--TODO: 重构数据库字段: id、姓名、学号、银行卡号、电话号码-->
     <resultMap id="MemberResult" type="Member">
         <result property="id" column="id" />
         <result property="name" column="name" />
