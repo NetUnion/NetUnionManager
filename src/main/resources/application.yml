@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: NetUnionManager
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:postgresql://localhost:5432/netunionmanager
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
