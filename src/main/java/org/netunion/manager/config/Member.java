@@ -12,6 +12,10 @@ public class Member {
     private String name;
     private String studentId;
 
+    private String phoneNum;
+
+    private String bankNum;
+
     public int getId() {
         return id;
     }
@@ -36,12 +40,30 @@ public class Member {
         this.studentId = studentId;
     }
 
+    public String getBankNum() {
+        return bankNum;
+    }
+
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Member{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", studentId='" + studentId + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", bankNum='" + bankNum + '\'' +
                 '}';
     }
 }

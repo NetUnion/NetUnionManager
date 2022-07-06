@@ -7,6 +7,8 @@
         <result property="id" column="id" />
         <result property="name" column="name" />
         <result property="studentId" column="student_id" />
+        <result property="phoneNum" column="phone_num" />
+        <result property="bankNum" column="bank_num" />
     </resultMap>
 <!--    增-->
     <insert id="add" parameterType="Member">
@@ -17,8 +19,11 @@
         DELETE FROM "member" WHERE id = #{id}
     </delete>
 <!--    改-->
-    <update id="update" parameterType="Member">
-        UPDATE "member" SET name = #{name}, student_id = #{studentId} WHERE id = #{id}
+    <update id="updatePhoneNumById" parameterType="Member">
+        UPDATE "member" SET phone_num = #{phoneNum} WHERE id = #{id}
+    </update>
+    <update id="updateBankNumById" parameterType="Member">
+        UPDATE "member" SET bank_num = #{bankNum} WHERE id = #{id}
     </update>
 <!--    查-->
     <select id="getById" resultMap="MemberResult" parameterType="Member">

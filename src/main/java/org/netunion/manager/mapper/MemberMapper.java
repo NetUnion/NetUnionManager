@@ -14,15 +14,16 @@ import java.util.List;
  */
 @Mapper
 public interface MemberMapper {
+    //增
     public int add(Member member);
-
+    //删
     public void delete(int id);
-
-    public Member getById(int id);
-
+    //改
     public int update(Member member);
-
+    public void updatePhoneNumById(int id, String phoneNum);
+    //查
     public List<Member> getAll();
+    public Member getById(int id);
 
     public int count();
 }
