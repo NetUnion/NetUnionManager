@@ -8,3 +8,6 @@ spring:
       username: postgres
       password: postgres
       driver-class-name: org.postgresql.Driver
+mybatis:
+  type-aliases-package: org.netunion.manager.config
+  mapper-locations: classpath:org/netunion/manager/mapper/*Mapper.xml

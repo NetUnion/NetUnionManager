@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.netunion.manager.mapper.MemberMapper">
+
+    <resultMap id="MemberResult" type="Member">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="studentId" column="student_id" />
+    </resultMap>
+<!--    增-->
+    <insert id="add" parameterType="Member">
+        INSERT INTO "member" ("name", student_id) VALUES(#{name}, #{studentId})
+    </insert>
+<!--    删-->
+    <delete id="delete" parameterType="Member">
+        DELETE FROM "member" WHERE id = #{id}
+    </delete>
+<!--    改-->
+    <update id="update" parameterType="Member">
+        UPDATE "member" SET name = #{name}, student_id = #{studentId} WHERE id = #{id}
+    </update>
+<!--    查-->
+    <select id="getById" resultMap="MemberResult" parameterType="Member">
+        SELECT * FROM "member" WHERE id = #{id}
+    </select>
+    <select id="getAll" resultMap="MemberResult" parameterType="Member">
+        SELECT * FROM "member"
+    </select>
+</mapper>
