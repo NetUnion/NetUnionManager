@@ -48,7 +48,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             map.put("status", 401);
         }
         map.put("state", false);
-        Map res = new HashMap();
+        Map<String, Object> res = new HashMap<>();
         res.put("data", map);
         String json = new ObjectMapper().writeValueAsString(res);
         response.setCharacterEncoding("UTF-8");
