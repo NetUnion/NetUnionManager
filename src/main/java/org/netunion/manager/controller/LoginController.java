@@ -2,9 +2,12 @@ package org.netunion.manager.controller;
 
 import org.netunion.manager.mapper.UserMapper;
 import org.netunion.manager.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import org.netunion.manager.utils.JwtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +30,7 @@ public class LoginController {
     }
 
     //校验用户名密码
-    @PostMapping(value = "/check")
+    @PostMapping(value = "/login/check")
     public boolean check(@RequestParam String userName, @RequestParam String hashedPassword) {
         User user = userMapper.getByUserName(userName);
         if (user == null) return false;
@@ -35,11 +38,11 @@ public class LoginController {
     }
     //判断是否为有效用户并生成token
     @PostMapping(value = "/login/token", produces = "application/json;charset=UTF-8")
-    public String getToken(@RequestBody User user) {
-        if (check(user.getUserName(), user.getHashedPasswd())) {
+    public String getToken(@RequestParam String userName, @RequestParam String hashedPassword) {
+        if (check(userName, hashedPassword)) {
             Map<String, String> payload = new HashMap<>();
-            payload.put("userName", user.getUserName());
-            payload.put("hashedPassword", user.getHashedPasswd());
+            payload.put("userName", userName);
+            payload.put("hashedPassword", hashedPassword);
             payload.put("time", String.valueOf(System.currentTimeMillis()));
             return JwtUtils.getToken(payload);
         }

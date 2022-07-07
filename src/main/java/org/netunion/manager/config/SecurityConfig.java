@@ -20,6 +20,6 @@ public class SecurityConfig implements WebMvcConfigurer {
     private JwtInterceptor jwtInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**"); //所有接口必须检查JWT
+        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/login", "/login/*"); //所有接口必须检查JWT
     }
 }
