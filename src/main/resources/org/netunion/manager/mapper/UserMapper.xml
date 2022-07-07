@@ -2,31 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.netunion.manager.mapper.UserMapper">
-    <resultMap id="UserResult" type="User">
+    <resultMap id="UserResult" type="org.netunion.manager.pojo.User">
         <result property="userName" column="username" />
         <result property="hashedPasswd" column="hashed_password" />
         <result property="id" column="id" />
     </resultMap>
     <!--    增-->
-    <insert id="add" parameterType="User">
+    <insert id="add" parameterType="org.netunion.manager.pojo.User">
         INSERT INTO "user" ("username", "hashed_password") VALUES(#{userName}, #{hashedPasswd})
     </insert>
     <!--    删-->
-    <delete id="delete" parameterType="User">
+    <delete id="delete" parameterType="org.netunion.manager.pojo.User">
         DELETE FROM "user" WHERE id = #{id}
     </delete>
     <!--    改-->
-    <update id="updatePasswdById" parameterType="User">
+    <update id="updatePasswdById" parameterType="org.netunion.manager.pojo.User">
         UPDATE "user" SET hashed_password = #{newPassWord} WHERE id = #{id}
     </update>
     <!--    查-->
-    <select id="getById" resultMap="UserResult" parameterType="User">
+    <select id="getById" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
         SELECT * FROM "user" WHERE id = #{id}
     </select>
-    <select id="getByUserName" resultMap="UserResult" parameterType="User">
+    <select id="getByUserName" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
         SELECT * FROM "user" WHERE username = #{userName}
     </select>
-    <select id="getAll" resultMap="UserResult">
+    <select id="getAll" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
         SELECT * FROM "user"
     </select>
 </mapper>

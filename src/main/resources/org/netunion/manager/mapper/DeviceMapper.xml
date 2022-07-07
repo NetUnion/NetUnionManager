@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.netunion.manager.mapper.DeviceMapper">
-    <resultMap id="DeviceResult" type="Device">
+    <resultMap id="DeviceResult" type="org.netunion.manager.pojo.Device">
         <result property="id" column="id" />
         <result property="deviceType" column="device_type" />
         <result property="manageIp" column="manage_ip" />
@@ -10,31 +10,31 @@
         <result property="rackNo" column="rack_no" />
     </resultMap>
     <!--    增-->
-    <insert id="add" parameterType="Device">
+    <insert id="add" parameterType="org.netunion.manager.pojo.Device">
         INSERT INTO "device" ("device_type", "name") VALUES(#{deviceType}, #{name})
     </insert>
     <!--    删-->
-    <delete id="delete" parameterType="Device">
+    <delete id="delete" parameterType="org.netunion.manager.pojo.Device">
         DELETE FROM "device" WHERE id = #{id}
     </delete>
     <!--    改-->
-    <update id="updateDeviceTypeById" parameterType="Device">
+    <update id="updateDeviceTypeById" parameterType="org.netunion.manager.pojo.Device">
         UPDATE "device" SET device_type = #{deviceType} WHERE id = #{id}
     </update>
-    <update id="updateManageIpById" parameterType="Device">
+    <update id="updateManageIpById" parameterType="org.netunion.manager.pojo.Device">
         UPDATE "device" SET manage_ip = #{manageIp} WHERE id = #{id}
     </update>
-    <update id="updateNameById" parameterType="Device">
+    <update id="updateNameById" parameterType="org.netunion.manager.pojo.Device">
         UPDATE "device" SET name = #{name} WHERE id = #{id}
     </update>
-    <update id="updateRackNoById" parameterType="Device">
+    <update id="updateRackNoById" parameterType="org.netunion.manager.pojo.Device">
         UPDATE "device" SET rack_no = #{rackNo} WHERE id = #{id}
     </update>
     <!--    查-->
-    <select id="getById" resultMap="DeviceResult" parameterType="Device">
+    <select id="getById" resultMap="DeviceResult" parameterType="org.netunion.manager.pojo.Device">
         SELECT * FROM "device" WHERE id = #{id}
     </select>
-    <select id="getAll" resultMap="DeviceResult" parameterType="Device">
+    <select id="getAll" resultMap="DeviceResult" parameterType="org.netunion.manager.pojo.Device">
         SELECT * FROM "device"
     </select>
 </mapper>
