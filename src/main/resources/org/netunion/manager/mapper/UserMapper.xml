@@ -9,7 +9,7 @@
     </resultMap>
     <!--    增-->
     <insert id="add" parameterType="org.netunion.manager.pojo.User">
-        INSERT INTO "user" ("username", "hashed_password") VALUES(#{userName}, #{hashedPasswd})
+        INSERT INTO "user" ("username", "hashed_password") VALUES(#{userName}, #{hashedPassword})
     </insert>
     <!--    删-->
     <delete id="delete" parameterType="org.netunion.manager.pojo.User">

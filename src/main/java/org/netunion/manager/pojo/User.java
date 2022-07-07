@@ -37,7 +37,7 @@ public class User {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", hashedPasswd='" + hashedPassword + '\'' +
-                ", ipAddress='" + id + '\'' +
+                ", id'" + id + '\'' +
                 '}';
     }
 }
