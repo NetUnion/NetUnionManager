@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author David Wang
  * @date 2022-07-07
- * @version 1.0
+ * @version 1.1
  */
 @RestController
 public class DeviceController {
@@ -33,7 +33,7 @@ public class DeviceController {
     @PostMapping(value = "/device/add", produces = "application/json;charset=UTF-8")
     public String addDevice(@RequestBody Device device) {
         deviceMapper.add(device);
-        return "添加设备成功";
+        return device.toString();
     }
     //通过 DELETE 方式删除设备
     @DeleteMapping(value = "/device/delete/{id}")

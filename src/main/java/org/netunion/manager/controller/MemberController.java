@@ -33,7 +33,7 @@ public class MemberController {
     @PostMapping(value = "/member/add", produces = "application/json;charset=UTF-8")
     public String addMember(@RequestBody Member member) {
         memberMapper.add(member);
-        return "添加成员成功";
+        return member.toString();
     }
     //通过 DELETE 方式删除成员
     @DeleteMapping(value = "/member/delete/{id}")

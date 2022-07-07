@@ -11,7 +11,7 @@
     </resultMap>
     <!--    增-->
     <insert id="add" parameterType="Device">
-        INSERT INTO "device" ("device_type", "manage_ip", "name", "rack_no") VALUES(#{deviceType}, #{manageIp}, #{name}, #{rackNo})
+        INSERT INTO "device" ("device_type", "name") VALUES(#{deviceType}, #{name})
     </insert>
     <!--    删-->
     <delete id="delete" parameterType="Device">
