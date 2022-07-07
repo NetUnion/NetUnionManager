@@ -18,11 +18,11 @@
 
 ## 部署方式
 
-**运行环境：**Java 11
+**运行环境：** Java 11
 
-**修改密钥：**为了安全性，先在 `src/main/java/org/netunion/manager/utils/JwtUtils.java` 中修改 `SECRET_KEY`。
+**修改密钥：** 为了安全性，先在 `src/main/java/org/netunion/manager/utils/JwtUtils.java` 中修改 `SECRET_KEY`。
 
-**建立数据库：**安装 `PostgreSQL` 数据库，先新建数据库，并执行下面的命令
+**建立数据库：** 安装 `PostgreSQL` 数据库，先新建数据库，并执行下面的命令
 
 ```SQL
 CREATE TABLE public.device (
@@ -46,9 +46,9 @@ CREATE TABLE public."user" (
 );
 ```
 
-**建立管理员账户**：在 `user` 表中添加管理员账户，`hashed_password` 字段应和前端实际得到的哈希后的密码一致。
+**建立管理员账户：** 在 `user` 表中添加管理员账户，`hashed_password` 字段应和前端实际得到的哈希后的密码一致。
 
-**打包和部署：**执行 `mvn clean package`，会在 `target` 中生成 JAR 文件，然后 `java -jar manager.jar` 即可，服务端运行在 8080 端口。
+**打包和部署：** 执行 `mvn clean package`，会在 `target` 中生成 JAR 文件，然后 `java -jar manager.jar` 即可，服务端运行在 8080 端口。
 
 ## API
 

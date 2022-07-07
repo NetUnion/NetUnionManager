@@ -24,21 +24,24 @@ public class UserController {
         return userMapper.getAll();
     }
     // 获取指定用户信息 JSON 格式
-    @GetMapping("/user/{id}")
-    public User getUser(@PathVariable("id") int id) {
+    @GetMapping("/user/getById")
+    public User getById(@RequestParam("id") int id) {
         if (userMapper.getById(id) == null) return null;
         else return userMapper.getById(id);
     }
-    @GetMapping("/user/{username}")
-    public User getUser(@PathVariable("username") String username) {
+    @GetMapping("/user/getByUsername")
+    public User getByUserName(@RequestParam("username") String username) {
         if (userMapper.getByUserName(username) == null) return null;
         else return userMapper.getByUserName(username);
     }
     //通过 POST 方式添加用户
     @PostMapping(value = "/user/add", produces = "application/json;charset=UTF-8")
     public String addUser(@RequestBody User user) {
-        userMapper.add(user);
-        return user.toString();
+        if (getByUserName(user.getUserName()) != null) return "USERNAME EXIST";
+        else {
+            userMapper.add(user);
+            return user.toString();
+        }
     }
     //通过 DELETE 方式删除用户
     @DeleteMapping(value = "/user/delete/{id}")
