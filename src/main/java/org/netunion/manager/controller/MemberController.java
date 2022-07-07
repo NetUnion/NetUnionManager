@@ -1,6 +1,6 @@
 package org.netunion.manager.controller;
 
-import org.netunion.manager.config.Member;
+import org.netunion.manager.pojo.Member;
 import org.netunion.manager.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

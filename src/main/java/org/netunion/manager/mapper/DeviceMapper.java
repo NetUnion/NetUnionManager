@@ -1,7 +1,7 @@
 package org.netunion.manager.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.netunion.manager.config.Device;
+import org.netunion.manager.pojo.Device;
 
 import java.util.List;
 

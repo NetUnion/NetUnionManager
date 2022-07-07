@@ -1,4 +1,4 @@
-package org.netunion.manager.config;
+package org.netunion.manager.pojo;
 
 /**
  * 设备 JavaBean
