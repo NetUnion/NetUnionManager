@@ -4,7 +4,7 @@
 <mapper namespace="org.netunion.manager.mapper.UserMapper">
     <resultMap id="UserResult" type="org.netunion.manager.pojo.User">
         <result property="userName" column="username" />
-        <result property="hashedPasswd" column="hashed_password" />
+        <result property="hashedPassword" column="hashed_password" />
         <result property="id" column="id" />
     </resultMap>
     <!--    增-->

@@ -34,7 +34,7 @@ public class LoginController {
     public boolean check(@RequestParam String userName, @RequestParam String hashedPassword) {
         User user = userMapper.getByUserName(userName);
         if (user == null) return false;
-        else return user.getHashedPasswd().equals(hashedPassword);
+        else return user.getHashedPassword().equals(hashedPassword);
     }
     //判断是否为有效用户并生成token
     @PostMapping(value = "/login/token", produces = "application/json;charset=UTF-8")

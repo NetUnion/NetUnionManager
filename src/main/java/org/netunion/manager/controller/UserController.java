@@ -59,7 +59,7 @@ public class UserController {
         if (user == null) {
             return "EMPTY ID";
         } else {
-            if (user.getHashedPasswd().equals(oldPassWord)) {
+            if (user.getHashedPassword().equals(oldPassWord)) {
                 userMapper.updatePasswordById(id, oldPassWord, newPassWord);
                 return user.toString();
             } else {

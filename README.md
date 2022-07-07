@@ -22,7 +22,38 @@
 
 ## API
 
-### 成员数据库
+### 用户管理和登陆
+
+#### 用户管理
+
+用户类包括三个变量：`userName`, `hashedPassword` 和 `id`，对应的数据库字段为`user_name`、`hashed_password`和`id`。
+
+对于用户的操作如下：
+
+- `/user` GET 获取所有用户信息（JSON格式）
+- `/user/{username}` GET 通过 ID 获取指定用户信息（JSON格式）
+- `/user/{id}` GET 通过用户名获取指定用户信息（JSON格式）
+- `/user/add` POST 添加一个用户（JSON格式）
+- `/user/delete/{id}` DELETE 通过 ID 删除指定用户
+- `/user/update/password` POST 修改密码
+
+#### 对于密码哈希和修改密码的说明
+
+为了能够正常登陆，应当手动在数据库的 `user` 表中添加一个用户。
+
+在创建新用户时，密码会直接传入数据库，故应当在前端做哈希处理。（以后可能会改进）
+
+修改密码时，POST一个表单，包括`id`、`oldPassWord`、`newPassWord`，其中`id`为用户ID，`oldPassWord`为旧密码，`newPassWord`为新密码。失败的话会返回 `WRONG PASSWORD`。
+
+#### 登陆
+
+登陆时，将 `userName` 和 `hashedPassword` 作为表单传入 `/login/token`，会自动进行用户存在与否和密码是否正确的检查（也可直接传入 `login/check` 检查返回的布尔值）检查正确后会返回 JWT 格式的 `token`，在访问其他 API 时需要在请求头中添加 `token` 字段。
+
+![图 1](images/d4112e6338be2dfd4a3a07b82053de08f683e43140f4a6077e7d70ba8bfeedfd.png)  
+
+![图 2](images/4193b3766cd1d82690b22530e476553799c86fd7dae5d7593abbf80f7ec4a71c.png)  
+
+### 成员管理
 
 - `/member` GET 获取所有成员信息（JSON 格式）
 - `/member/{id}` GET 获取单个成员信息（JSON格式）
@@ -31,7 +62,7 @@
 - `/member/update/bank` POST 为人员添加或更新银行卡号，传入表单，包括 `id`、`bankNum` 两个字段
 - `/member/update/phone` POST 为人员添加或更新手机号，传入表单，包括 `id`、`phoneNum` 两个字段
 
-### 设备数据库
+### 设备管理
 
 - `/device` GET 获取所有设备信息（JSON 格式）
 - `/device/{id}` GET 获取单个设备信息（JSON格式）

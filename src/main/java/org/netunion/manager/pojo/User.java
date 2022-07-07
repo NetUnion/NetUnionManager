@@ -9,7 +9,7 @@ package org.netunion.manager.pojo;
  */
 public class User {
     private String userName;
-    private String hashedPasswd;
+    private String hashedPassword;
     private int id;
 
     public String getUserName() {
@@ -20,12 +20,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getHashedPasswd() {
-        return hashedPasswd;
+    public String getHashedPassword() {
+        return hashedPassword;
     }
 
-    public void setHashedPasswd(String hashedPasswd) {
-        this.hashedPasswd = hashedPasswd;
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 
     public int getId() {
@@ -36,7 +36,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
-                ", hashedPasswd='" + hashedPasswd + '\'' +
+                ", hashedPasswd='" + hashedPassword + '\'' +
                 ", ipAddress='" + id + '\'' +
                 '}';
     }
