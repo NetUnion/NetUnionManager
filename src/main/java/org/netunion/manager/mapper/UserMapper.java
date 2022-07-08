@@ -9,20 +9,19 @@ import java.util.List;
  * 用户 Mapper 接口
  *
  * @author David Wang
- * @date 2020-07-07
- * @version 1.0
+ * @date 2020-07-08
+ * @version 2.0
  */
 @Mapper
 public interface UserMapper {
     //增
-    public int add(User user);
+    int add(User user);
     //删
-    public void delete(int id);
+    void delete(String username);
     //改
-    public void update(User user);
-    public void updatePasswordById(int id, String oldPassWord, String newPassWord);
+    void updatePasswordByUsername(String username, String newPassword);
+    void updateAuthorityByUsername(String username, String newAuthority);
     //查
-    public User getById(int id);
-    public User getByUserName(String userName);
-    public List<User> getAll();
+    User getByUsername(String username);
+    List<User> getAll();
 }

@@ -1,7 +1,7 @@
 package org.netunion.manager.controller;
 
-import org.netunion.manager.pojo.Device;
 import org.netunion.manager.mapper.DeviceMapper;
+import org.netunion.manager.pojo.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

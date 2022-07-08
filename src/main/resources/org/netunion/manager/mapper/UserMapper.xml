@@ -3,30 +3,30 @@
 
 <mapper namespace="org.netunion.manager.mapper.UserMapper">
     <resultMap id="UserResult" type="org.netunion.manager.pojo.User">
-        <result property="userName" column="username" />
-        <result property="hashedPassword" column="hashed_password" />
-        <result property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="authority" column="authority"/>
     </resultMap>
-    <!--    增-->
-    <insert id="add" parameterType="org.netunion.manager.pojo.User">
-        INSERT INTO "user" ("username", "hashed_password") VALUES(#{userName}, #{hashedPassword})
-    </insert>
-    <!--    删-->
-    <delete id="delete" parameterType="org.netunion.manager.pojo.User">
-        DELETE FROM "user" WHERE id = #{id}
-    </delete>
-    <!--    改-->
-    <update id="updatePasswdById" parameterType="org.netunion.manager.pojo.User">
-        UPDATE "user" SET hashed_password = #{newPassWord} WHERE id = #{id}
-    </update>
-    <!--    查-->
-    <select id="getById" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
-        SELECT * FROM "user" WHERE id = #{id}
-    </select>
-    <select id="getByUserName" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
-        SELECT * FROM "user" WHERE username = #{userName}
+<!--    查-->
+    <select id="getByUsername" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
+        select * from "user" where "username" = #{username}
     </select>
     <select id="getAll" resultMap="UserResult" parameterType="org.netunion.manager.pojo.User">
-        SELECT * FROM "user"
+        select * from "user"
     </select>
+<!--    增-->
+    <insert id="add" parameterType="org.netunion.manager.pojo.User">
+        insert into "user" ("username", "password", "authorities") values (#{username}, #{password}, #{authority})
+    </insert>
+<!--    删-->
+    <delete id="delete" parameterType="org.netunion.manager.pojo.User">
+        delete from "user" where "username" = #{username}
+    </delete>
+<!--    改-->
+    <update id="updatePasswdByUsername" parameterType="org.netunion.manager.pojo.User">
+        UPDATE "user" SET password = #{newPassword} WHERE "username" = #{username}
+    </update>
+    <update id="updateAuthorityByUsername" parameterType="org.netunion.manager.pojo.User">
+        UPDATE "user" SET authorities = #{newAuthorities} WHERE "username" = #{username}
+    </update>
 </mapper>

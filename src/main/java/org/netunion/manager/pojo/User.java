@@ -1,43 +1,67 @@
 package org.netunion.manager.pojo;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * 权限用户实体
  *
  * @author David Wang
- * @date 2022-07-07
- * @version 1.0
+ * @date 2022-07-08
+ * @version 2.0
  */
-public class User {
-    private String userName;
-    private String hashedPassword;
-    private int id;
+@Component
+public class User implements UserDetails {
+    private String username;
+    private String password;
+    private String authority;
 
-    public String getUserName() {
-        return userName;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String[] authorities = this.authority.split(",");
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
+        for (String role : authorities) {
+            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role));
+        }
+        return simpleGrantedAuthorities;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public String getPassword() {
+        return password;
     }
-
-    public String getHashedPassword() {
-        return hashedPassword;
+    @Override
+    public String getUsername() {
+        return username;
     }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
-
-    public int getId() {
-        return id;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "userName='" + userName + '\'' +
-                ", hashedPasswd='" + hashedPassword + '\'' +
-                ", id'" + id + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authority='" + authority + '\'' +
                 '}';
     }
 }
