@@ -17,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
@@ -42,15 +44,17 @@ public class SecurityConfig{
 //    }
     @Bean
     public SecurityFilterChain httpSecurity(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((authz) -> authz
-//                .anyRequest().authenticated())
-//                .formLogin().and()
-//                .csrf().disable();
-//        return http.build();
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
-        registry.antMatchers("/member").permitAll();
-        registry.anyRequest().authenticated();
-        registry.and().formLogin().and().csrf().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/index").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login.html").permitAll()
+                .loginProcessingUrl("/dologin").permitAll()
+                .defaultSuccessUrl("/index")
+                .and()
+                .csrf().disable();
         return http.build();
     }
 }
