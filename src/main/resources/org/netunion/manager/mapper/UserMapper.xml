@@ -16,7 +16,7 @@
     </select>
 <!--    增-->
     <insert id="add" parameterType="org.netunion.manager.pojo.User">
-        insert into "user" ("username", "password", "authorities") values (#{username}, #{password}, #{authority})
+        insert into "user" ("username", "password", "authority") values (#{username}, #{password}, #{authority})
     </insert>
 <!--    删-->
     <delete id="delete" parameterType="org.netunion.manager.pojo.User">
