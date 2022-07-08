@@ -4,23 +4,14 @@ package org.netunion.manager.pojo;
  * 设备 JavaBean
  *
  * @author David Wang
- * @date 2022-07-07
- * @version 1.0
+ * @date 2022-07-08
+ * @version 2.0
  */
 public class Device {
-    private int id;
     private String deviceType;
     private String manageIp;
     private String name;
     private int rackNo;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDeviceType() {
         return deviceType;
@@ -57,8 +48,7 @@ public class Device {
     @Override
     public String toString() {
         return "{" +
-                "id=" + id +
-                ", deviceType='" + deviceType + '\'' +
+                "deviceType='" + deviceType + '\'' +
                 ", manageIp='" + manageIp + '\'' +
                 ", name='" + name + '\'' +
                 ", rackNo=" + rackNo +

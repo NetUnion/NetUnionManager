@@ -3,7 +3,6 @@
 
 <mapper namespace="org.netunion.manager.mapper.DeviceMapper">
     <resultMap id="DeviceResult" type="org.netunion.manager.pojo.Device">
-        <result property="id" column="id" />
         <result property="deviceType" column="device_type" />
         <result property="manageIp" column="manage_ip" />
         <result property="name" column="name" />
@@ -15,24 +14,21 @@
     </insert>
     <!--    删-->
     <delete id="delete" parameterType="org.netunion.manager.pojo.Device">
-        DELETE FROM "device" WHERE id = #{id}
+        DELETE FROM "device" WHERE name = #{name}
     </delete>
     <!--    改-->
-    <update id="updateDeviceTypeById" parameterType="org.netunion.manager.pojo.Device">
-        UPDATE "device" SET device_type = #{deviceType} WHERE id = #{id}
+    <update id="updateDeviceTypeByName" parameterType="org.netunion.manager.pojo.Device">
+        UPDATE "device" SET device_type = #{deviceType} WHERE name = #{name}
     </update>
-    <update id="updateManageIpById" parameterType="org.netunion.manager.pojo.Device">
-        UPDATE "device" SET manage_ip = #{manageIp} WHERE id = #{id}
+    <update id="updateManageIpByName" parameterType="org.netunion.manager.pojo.Device">
+        UPDATE "device" SET manage_ip = #{manageIp} WHERE name = #{name}
     </update>
-    <update id="updateNameById" parameterType="org.netunion.manager.pojo.Device">
-        UPDATE "device" SET name = #{name} WHERE id = #{id}
-    </update>
-    <update id="updateRackNoById" parameterType="org.netunion.manager.pojo.Device">
-        UPDATE "device" SET rack_no = #{rackNo} WHERE id = #{id}
+    <update id="updateRackNoByName" parameterType="org.netunion.manager.pojo.Device">
+        UPDATE "device" SET rack_no = #{rackNo} WHERE name = #{name}
     </update>
     <!--    查-->
-    <select id="getById" resultMap="DeviceResult" parameterType="org.netunion.manager.pojo.Device">
-        SELECT * FROM "device" WHERE id = #{id}
+    <select id="getByName" resultMap="DeviceResult" parameterType="org.netunion.manager.pojo.Device">
+        SELECT * FROM "device" WHERE name = #{name}
     </select>
     <select id="getAll" resultMap="DeviceResult" parameterType="org.netunion.manager.pojo.Device">
         SELECT * FROM "device"

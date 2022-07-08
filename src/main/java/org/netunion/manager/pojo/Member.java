@@ -4,25 +4,16 @@ package org.netunion.manager.pojo;
  * 成员 JavaBean
  *
  * @author David Wang
- * @date 2022-07-06
- * @version 1.0
+ * @date 2022-07-08
+ * @version 2.0
  */
 public class Member {
-    private int id;
     private String name;
     private String studentId;
 
     private String phoneNum;
 
     private String bankNum;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -59,8 +50,7 @@ public class Member {
     @Override
     public String toString() {
         return "{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", studentId='" + studentId + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", bankNum='" + bankNum + '\'' +

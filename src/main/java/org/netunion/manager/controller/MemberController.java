@@ -11,8 +11,8 @@ import java.util.List;
  * 成员页面控制器
  *
  * @author David Wang
- * @version 1.3
- * @date 2020-07-07
+ * @version 2.0
+ * @date 2020-07-08
  */
 @RestController
 public class MemberController {
@@ -24,10 +24,10 @@ public class MemberController {
         return memberMapper.getAll();
     }
     // 获取指定成员信息 JSON 格式
-    @GetMapping("/member/{id}")
-    public Member getMember(@PathVariable("id") int id) {
-        if (memberMapper.getById(id) == null) return null;
-        else return memberMapper.getById(id);
+    @GetMapping("/member/{studentId}")
+    public String getMember(@PathVariable("studentId") String studentId) {
+        if (memberMapper.getById(studentId) == null) return "{\"error\": \"NO MEMBER\"}";
+        else return memberMapper.getById(studentId).toString();
     }
     //通过 POST 方式添加成员
     @PostMapping(value = "/member/add", produces = "application/json;charset=UTF-8")
@@ -36,39 +36,39 @@ public class MemberController {
         return member.toString();
     }
     //通过 DELETE 方式删除成员
-    @DeleteMapping(value = "/member/delete/{id}")
-    public String deleteMember(@PathVariable("id") int id) {
-        Member member = memberMapper.getById(id);
+    @DeleteMapping(value = "/member/delete/{studentId}")
+    public String deleteMember(@PathVariable("studentId") String studentId) {
+        Member member = memberMapper.getById(studentId);
         if (member != null){
-            memberMapper.delete(id);
+            memberMapper.delete(studentId);
             return member.toString();
         }
         else {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO MEMBER\"}";
         }
     }
     //通过 POST 方式更新成员银行卡号
     @PostMapping(value = "/member/update/bank")
-    public String updateMemberBankNum(@RequestParam int id, @RequestParam String bankNum) {
-        Member member = memberMapper.getById(id);
+    public String updateMemberBankNum(@RequestParam String studentId, @RequestParam String bankNum) {
+        Member member = memberMapper.getById(studentId);
         if (member == null) {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO MEMBER\"}";
         }
         else {
-            memberMapper.updateBankNumById(id, bankNum);
+            memberMapper.updateBankNumById(studentId, bankNum);
             return member.toString();
         }
     }
     //通过 POST 方式更新成员手机号码
     @PostMapping(value = "/member/update/phone")
-    public String updateMemberPhoneNum(@RequestParam int id, @RequestParam String phoneNum) {
-        Member member = memberMapper.getById(id);
+    public String updateMemberPhoneNum(@RequestParam String studentId, @RequestParam String phoneNum) {
+        Member member = memberMapper.getById(studentId);
         //判空
         if (member == null) {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO MEMBER\"}";
         }
         else {
-            memberMapper.updatePhoneNumById(id, phoneNum);
+            memberMapper.updatePhoneNumById(studentId, phoneNum);
             return member.toString();
         }
     }

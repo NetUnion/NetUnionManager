@@ -11,8 +11,8 @@ import java.util.List;
  * 设备控制器
  *
  * @author David Wang
- * @date 2022-07-07
- * @version 1.1
+ * @date 2022-07-08
+ * @version 2.0
  */
 @RestController
 public class DeviceController {
@@ -24,10 +24,10 @@ public class DeviceController {
         return deviceMapper.getAll();
     }
     // 获取指定设备信息 JSON 格式
-    @GetMapping("/device/{id}")
-    public Device getDevice(@PathVariable("id") int id) {
-        if (deviceMapper.getById(id) == null) return null;
-        else return deviceMapper.getById(id);
+    @GetMapping("/device/{name}")
+    public String getDevice(@PathVariable("name") String name) {
+        if (deviceMapper.getByName(name) == null) return "{\"error\": \"NO DEVICE\"}";
+        else return deviceMapper.getByName(name).toString();
     }
     //通过 POST 方式添加设备
     @PostMapping(value = "/device/add", produces = "application/json;charset=UTF-8")
@@ -36,62 +36,50 @@ public class DeviceController {
         return device.toString();
     }
     //通过 DELETE 方式删除设备
-    @DeleteMapping(value = "/device/delete/{id}")
-    public String deleteDevice(@PathVariable("id") int id) {
-        Device device = deviceMapper.getById(id);
+    @DeleteMapping(value = "/device/delete/{name}")
+    public String deleteDevice(@PathVariable("name") String name) {
+        Device device = deviceMapper.getByName(name);
         if (device != null){
-            deviceMapper.delete(id);
+            deviceMapper.delete(name);
             return device.toString();
         }
         else {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO DEVICE\"}";
         }
     }
     //通过 POST 方式更新设备类型
     @PostMapping(value = "/device/update/type")
-    public String updateDeviceType(@RequestParam int id, @RequestParam String type) {
-        Device device = deviceMapper.getById(id);
+    public String updateDeviceType(@RequestParam String name, @RequestParam String deviceType) {
+        Device device = deviceMapper.getByName(name);
         if (device == null) {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO DEVICE\"}";
         }
         else {
-            deviceMapper.updateDeviceTypeById(id, type);
+            deviceMapper.updateDeviceTypeByName(name, deviceType);
             return device.toString();
         }
     }
     //通过 POST 方式更新设备 manageIp
     @PostMapping(value = "/device/update/manageIp")
-    public String updateDeviceManageIp(@RequestParam int id, @RequestParam String manageIp) {
-        Device device = deviceMapper.getById(id);
+    public String updateDeviceManageIp(@RequestParam String name, @RequestParam String manageIp) {
+        Device device = deviceMapper.getByName(name);
         if (device == null) {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO DEVICE\"}";
         }
         else {
-            deviceMapper.updateManageIpById(id, manageIp);
-            return device.toString();
-        }
-    }
-    //通过 POST 方式更新设备 name
-    @PostMapping(value = "/device/update/name")
-    public String updateDeviceName(@RequestParam int id, @RequestParam String name) {
-        Device device = deviceMapper.getById(id);
-        if (device == null) {
-            return "{\"error\": \"EMPTY ID\"}";
-        }
-        else {
-            deviceMapper.updateNameById(id, name);
+            deviceMapper.updateManageIpByName(name, manageIp);
             return device.toString();
         }
     }
     //通过 POST 方式更新设备 rackNo
     @PostMapping(value = "/device/update/rackNo")
-    public String updateDeviceRackNo(@RequestParam int id, @RequestParam int rackNo) {
-        Device device = deviceMapper.getById(id);
+    public String updateDeviceRackNo(@RequestParam String name, @RequestParam int rackNo) {
+        Device device = deviceMapper.getByName(name);
         if (device == null) {
-            return "{\"error\": \"EMPTY ID\"}";
+            return "{\"error\": \"NO DEVICE\"}";
         }
         else {
-            deviceMapper.updateRackNoById(id, rackNo);
+            deviceMapper.updateRackNoByName(name, rackNo);
             return device.toString();
         }
     }

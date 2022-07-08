@@ -15,18 +15,18 @@
     </insert>
 <!--    删-->
     <delete id="delete" parameterType="org.netunion.manager.pojo.Member">
-        DELETE FROM "member" WHERE id = #{id}
+        DELETE FROM "member" WHERE student_id = #{studentId}
     </delete>
 <!--    改-->
     <update id="updatePhoneNumById" parameterType="org.netunion.manager.pojo.Member">
-        UPDATE "member" SET phone_num = #{phoneNum} WHERE id = #{id}
+        UPDATE "member" SET phone_num = #{phoneNum} WHERE student_id = #{studentId}
     </update>
     <update id="updateBankNumById" parameterType="org.netunion.manager.pojo.Member">
-        UPDATE "member" SET bank_num = #{bankNum} WHERE id = #{id}
+        UPDATE "member" SET bank_num = #{bankNum} WHERE student_id = #{studentId}
     </update>
 <!--    查-->
     <select id="getById" resultMap="MemberResult" parameterType="org.netunion.manager.pojo.Member">
-        SELECT * FROM "member" WHERE id = #{id}
+        SELECT * FROM "member" WHERE student_id = #{studentId}
     </select>
     <select id="getAll" resultMap="MemberResult" parameterType="org.netunion.manager.pojo.Member">
         SELECT * FROM "member"
