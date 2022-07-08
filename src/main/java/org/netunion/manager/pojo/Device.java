@@ -56,7 +56,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" +
+        return "{" +
                 "id=" + id +
                 ", deviceType='" + deviceType + '\'' +
                 ", manageIp='" + manageIp + '\'' +
