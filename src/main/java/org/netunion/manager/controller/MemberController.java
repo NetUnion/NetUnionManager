@@ -44,7 +44,7 @@ public class MemberController {
             return member.toString();
         }
         else {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
     }
     //通过 POST 方式更新成员银行卡号
@@ -52,7 +52,7 @@ public class MemberController {
     public String updateMemberBankNum(@RequestParam int id, @RequestParam String bankNum) {
         Member member = memberMapper.getById(id);
         if (member == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             memberMapper.updateBankNumById(id, bankNum);
@@ -65,7 +65,7 @@ public class MemberController {
         Member member = memberMapper.getById(id);
         //判空
         if (member == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             memberMapper.updatePhoneNumById(id, phoneNum);

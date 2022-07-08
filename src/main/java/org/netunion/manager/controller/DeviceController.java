@@ -44,7 +44,7 @@ public class DeviceController {
             return device.toString();
         }
         else {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
     }
     //通过 POST 方式更新设备类型
@@ -52,7 +52,7 @@ public class DeviceController {
     public String updateDeviceType(@RequestParam int id, @RequestParam String type) {
         Device device = deviceMapper.getById(id);
         if (device == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             deviceMapper.updateDeviceTypeById(id, type);
@@ -64,7 +64,7 @@ public class DeviceController {
     public String updateDeviceManageIp(@RequestParam int id, @RequestParam String manageIp) {
         Device device = deviceMapper.getById(id);
         if (device == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             deviceMapper.updateManageIpById(id, manageIp);
@@ -76,7 +76,7 @@ public class DeviceController {
     public String updateDeviceName(@RequestParam int id, @RequestParam String name) {
         Device device = deviceMapper.getById(id);
         if (device == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             deviceMapper.updateNameById(id, name);
@@ -88,7 +88,7 @@ public class DeviceController {
     public String updateDeviceRackNo(@RequestParam int id, @RequestParam int rackNo) {
         Device device = deviceMapper.getById(id);
         if (device == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
         else {
             deviceMapper.updateRackNoById(id, rackNo);
