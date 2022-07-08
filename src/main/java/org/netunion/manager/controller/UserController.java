@@ -52,7 +52,7 @@ public class UserController {
             return user.toString();
         }
         else {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         }
     }
     //通过 POST 方式更新用户密码
@@ -60,13 +60,13 @@ public class UserController {
     public String updateUserPassword(@RequestParam int id, @RequestParam String oldPassWord, @RequestParam String newPassWord) {
         User user = userMapper.getById(id);
         if (user == null) {
-            return "EMPTY ID";
+            return "{\"error\": \"EMPTY ID\"}";
         } else {
             if (user.getHashedPassword().equals(oldPassWord)) {
                 userMapper.updatePasswordById(id, oldPassWord, newPassWord);
                 return user.toString();
             } else {
-                return "WRONG PASSWORD";
+                return "{\"error\": \"EMPTY ID\"}";
             }
         }
     }
