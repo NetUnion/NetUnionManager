@@ -8,6 +8,13 @@ spring:
       username: postgres
       password: postgres
       driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: github-client-id
+            client-secret: github-client-secret
 mybatis:
   type-aliases-package: org.netunion.manager.config
   mapper-locations: classpath:org/netunion/manager/mapper/*Mapper.xml
