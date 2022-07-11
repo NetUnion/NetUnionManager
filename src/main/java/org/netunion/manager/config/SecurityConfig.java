@@ -33,7 +33,7 @@ public class SecurityConfig{
     public SecurityFilterChain httpSecurity(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/index", "/user/query").permitAll()
+                .antMatchers("/index").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

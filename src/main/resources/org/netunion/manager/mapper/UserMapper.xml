@@ -23,10 +23,10 @@
         delete from "user" where "username" = #{username}
     </delete>
 <!--    改-->
-    <update id="updatePasswdByUsername" parameterType="org.netunion.manager.pojo.User">
+    <update id="updatePasswordByUsername" parameterType="org.netunion.manager.pojo.User">
         UPDATE "user" SET password = #{newPassword} WHERE "username" = #{username}
     </update>
     <update id="updateAuthorityByUsername" parameterType="org.netunion.manager.pojo.User">
-        UPDATE "user" SET authorities = #{newAuthorities} WHERE "username" = #{username}
+        UPDATE "user" SET authority = #{newAuthorities} WHERE "username" = #{username}
     </update>
 </mapper>

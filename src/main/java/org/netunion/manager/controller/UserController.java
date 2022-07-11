@@ -4,6 +4,7 @@ import org.netunion.manager.mapper.UserMapper;
 import org.netunion.manager.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserMapper userMapper;
+
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     //查询单个用户
     @GetMapping("/user/{username}")
@@ -55,13 +58,17 @@ public class UserController {
     //更新用户密码
     @PostMapping(value = "/user/update/password")
     public String updatePassword(@RequestParam String username,
+                                 @RequestParam String oldPassword,
                                  @RequestParam String newPassword) {
         User user = userMapper.getByUsername(username);
         if (user == null) {
             return "{\"error\": \"NO USER\"}";
+        } else if (passwordEncoder.matches(oldPassword, user.getPassword())) {
+            newPassword = passwordEncoder.encode(newPassword);
+            userMapper.updatePasswordByUsername(username, newPassword);
+            return "{\"success\": \"PASSWORD CHANGED\"}";
         } else {
-            userMapper.updatePasswordByUsername(username, newPassword); //这里要在前端将明文老密码和数据库中BCrypt加密后的密码做匹配。
-            return user.toString();
+            return "{\"error\": \"WRONG PASSWORD\"}";
         }
     }
 
