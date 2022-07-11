@@ -32,8 +32,12 @@ public class MemberController {
     //通过 POST 方式添加成员
     @PostMapping(value = "/member/add", produces = "application/json;charset=UTF-8")
     public String addMember(@RequestBody Member member) {
-        memberMapper.add(member);
-        return member.toString();
+        if (memberMapper.getById(member.getStudentId()) != null) {
+            return "{\"error\": \"MEMBER EXISTS\"}";
+        } else {
+            memberMapper.add(member);
+            return member.toString();
+        }
     }
     //通过 DELETE 方式删除成员
     @DeleteMapping(value = "/member/delete/{studentId}")
@@ -56,6 +60,7 @@ public class MemberController {
         }
         else {
             memberMapper.updateBankNumById(studentId, bankNum);
+            member = memberMapper.getById(studentId);
             return member.toString();
         }
     }
@@ -69,6 +74,7 @@ public class MemberController {
         }
         else {
             memberMapper.updatePhoneNumById(studentId, phoneNum);
+            member = memberMapper.getById(studentId);
             return member.toString();
         }
     }

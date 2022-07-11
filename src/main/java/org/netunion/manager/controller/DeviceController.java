@@ -32,8 +32,11 @@ public class DeviceController {
     //通过 POST 方式添加设备
     @PostMapping(value = "/device/add", produces = "application/json;charset=UTF-8")
     public String addDevice(@RequestBody Device device) {
-        deviceMapper.add(device);
-        return device.toString();
+        if (deviceMapper.getByName(device.getName()) != null) return "{\"error\": \"DEVICE EXISTS\"}";
+        else {
+            deviceMapper.add(device);
+            return device.toString();
+        }
     }
     //通过 DELETE 方式删除设备
     @DeleteMapping(value = "/device/delete/{name}")
@@ -56,6 +59,7 @@ public class DeviceController {
         }
         else {
             deviceMapper.updateDeviceTypeByName(name, deviceType);
+            device = deviceMapper.getByName(name);
             return device.toString();
         }
     }
@@ -68,6 +72,7 @@ public class DeviceController {
         }
         else {
             deviceMapper.updateManageIpByName(name, manageIp);
+            device = deviceMapper.getByName(name);
             return device.toString();
         }
     }
@@ -80,6 +85,7 @@ public class DeviceController {
         }
         else {
             deviceMapper.updateRackNoByName(name, rackNo);
+            device = deviceMapper.getByName(name);
             return device.toString();
         }
     }

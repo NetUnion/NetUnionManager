@@ -39,8 +39,15 @@ public class UserController {
     //增加用户
     @PostMapping(value = "/user/add", produces = "application/json;charset=UTF-8")
     public String addMember(@RequestBody User user) {
-        userMapper.add(user);
-        return user.toString();
+        if (userMapper.getByUsername(user.getUsername()) != null) {
+            return "{\"error\":\"USER EXISTS\"}";
+        } else {
+            String password = user.getPassword();
+            String encodedPassword = passwordEncoder.encode(password);
+            user.setPassword(encodedPassword);
+            userMapper.add(user);
+            return user.toString();
+        }
     }
 
     //删除用户
@@ -81,6 +88,7 @@ public class UserController {
             return "{\"error\": \"NO USER\"}";
         } else {
             userMapper.updateAuthorityByUsername(username, authority);
+            user = userMapper.getByUsername(username);
             return user.toString();
         }
     }
