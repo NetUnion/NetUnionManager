@@ -15,6 +15,12 @@ spring:
           github:
             client-id: github-client-id
             client-secret: github-client-secret
+          keycloak:
+            client-id: keycloak-client-id
+            client-secret: keycloak-client-secret
+        provider:
+          keycloak:
+            issuer-uri: https://sso.uestclug.org/auth/realms/NU
 mybatis:
   type-aliases-package: org.netunion.manager.config
   mapper-locations: classpath:org/netunion/manager/mapper/*Mapper.xml
