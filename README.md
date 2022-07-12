@@ -47,7 +47,7 @@ CREATE TABLE public."user" (
 
 **建立管理员账户：** 在 `user` 表中添加管理员账户，`password` 字段填入BCrypt加密后的密码。
 
-**配置 oauth2 登录：** 在 `src/main/resources/application.yml` 中配置 `oauth2`。GitHub 的配置已给出，如需支持 OpenID, 可以参考：[CSDN](https://blog.csdn.net/u013810234/article/details/113279871)。
+**配置 oauth2 登录：** 在 `src/main/resources/application.yml` 中配置 `oauth2`。GitHub 和 Keycloak 的配置已给出，填入对应的客户端 ID 和密钥即可。
 
 **打包和部署：** 执行 `mvn clean package`，会在 `target` 中生成 JAR 文件，然后 `java -jar manager.jar` 即可，服务端运行在 8080 端口。
 
