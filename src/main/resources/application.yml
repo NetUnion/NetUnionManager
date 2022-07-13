@@ -13,11 +13,11 @@ spring:
       client:
         registration:
           github:
-            client-id: github-client-id
-            client-secret: github-client-secret
+            client-id: ${GITHUB.CLIENT-ID}
+            client-secret: ${GITHUB.CLIENT-SECRET}
           keycloak:
-            client-id: ${keycloak.client-id}
-            client-secret: ${keycloak.client-secret}
+            client-id: ${KEYCLOAK.CLIENT-ID}
+            client-secret: ${KEYCLOAK.CLIENT-SECRET}
         provider:
           keycloak:
             issuer-uri: https://sso.uestclug.org/auth/realms/NU

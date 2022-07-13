@@ -12,7 +12,7 @@
 <!--    组、工件、版本设置-->
     <groupId>org.netunion</groupId>
     <artifactId>manager</artifactId>
-    <version>0.4</version>
+    <version>1.0</version>
 <!--打包设置-->
     <packaging>jar</packaging>
 
